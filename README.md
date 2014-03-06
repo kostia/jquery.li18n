@@ -1,4 +1,4 @@
-jquery-li18n
+jquery.li18n
 ============
 
-Lightweight i18n for jQuery
+Lightweight i18n for jQuery.
