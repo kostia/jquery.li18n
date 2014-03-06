@@ -1,0 +1,25 @@
+{
+  "name": "jquery.li18n",
+  "version": "0.0.1",
+  "authors": [
+    "Kostiantyn Kahanskyi <kostiantyn.kahanskyi@googlemail.com>"
+  ],
+  "description": "Lightweight i18n for jQuery.",
+  "dependencies": {
+    "jquery": ">=1.8.3"
+  },
+  "keywords": [
+    "jquery",
+    "i18n",
+    "translation",
+    "internationalization"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kostia/jquery.li18n",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec"
+  ]
+}
