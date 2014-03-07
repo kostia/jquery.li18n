@@ -23,6 +23,31 @@ describe('$.li18n', function() {
     });
   });
 
+  describe('_t', function() {
+    describe('if key is found', function() {
+      it('it resolves with translation', function() {
+        var promiseResolved = false;
+
+        $.li18n.locales = {en: {spam: 'eggs'}};
+
+        window._t('spam').done(function(t) {
+          promiseResolved = true;
+          expect(t).toBe('eggs');
+        });
+
+        expect(promiseResolved).toBe(true);
+      });
+    });
+
+    describe('if key is not found', function() {
+      it('it raises an error', function() {
+        expect(function() {
+          window._t('spam');
+        }).toThrow('Missing translation for "spam"');
+      });
+    });
+  });
+
   describe('.translate', function() {
     beforeEach(function() {
       $.li18n.locales = {

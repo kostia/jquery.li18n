@@ -2,13 +2,19 @@
   $.li18n = {
     translate: function(key) {
       var promise = $.Deferred();
-      var translation = $.li18n.locales[$.li18n.locale][key];
+      var translations = $.li18n.locales[$.li18n.locale];
 
-      if (translation) {
-        promise.resolve(translation);
+      if (translations) {
+        var translation = translations[key];
+
+        if (translation) {
+          promise.resolve(translation);
+        } else {
+          promise.reject();
+        }
       } else {
         promise.reject();
-      }
+      };
 
       return promise;
     },
@@ -20,4 +26,10 @@
   };
 
   $.li18n.reset();
+
+  window._t = function(key) {
+    return $.li18n.translate(key).fail(function() {
+      $.error('Missing translation for "' + key + '"');
+    });
+  };
 })(jQuery);
