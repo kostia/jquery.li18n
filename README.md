@@ -4,6 +4,12 @@ Lightweight i18n for jQuery.
 
 [![Build Status](https://travis-ci.org/kostia/jquery.li18n.png)](https://travis-ci.org/kostia/jquery.li18n)
 
+## Why?
+
+* It does exactly what it promises: translates with interpolations.
+* It is lightweight: less than 100 LoC.
+* Full test coverage.
+
 ## Installation
 
 ```
