@@ -53,31 +53,26 @@ Handlebars.registerHelper('t', function(key, interpolationOptions) {
 ```
 
 ## Testing
-* Install Node.js. For example with Homebrew (http://brew.sh/).
 
 ```bash
+# Install Node.js. For example with Homebrew (http://brew.sh/).
+
 brew install nodejs
-```
 
-* Install NPM modules
+# Install NPM modules
 
-```bash
 npm install
 npm install -g bower
 npm install -g jasmine-jquery
 npm install -g jasmine-node
-```
 
-* Install Bower components
+# Install Bower components
 
-```bash
 bower install
-```
 
-* Run specs
+# Run specs
 
-```bash
-jasmine-node spec/
+npm test
 ```
 
 ## License
