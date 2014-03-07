@@ -81,6 +81,14 @@ bower install
 npm test
 ```
 
+## Other i18n libraries
+
+* https://github.com/jquery/globalize
+* https://github.com/airbnb/polyglot.js
+* https://github.com/jamuhl/i18next
+* https://github.com/recurser/jquery-i18n
+* https://github.com/wikimedia/jquery.i18n
+
 ## License
 
 The MIT License (MIT)
