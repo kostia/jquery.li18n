@@ -20,6 +20,25 @@ _t('title'); // 'Hello!'
 _t('spam'); // Error: Missing translation for key "spam"
 ```
 
+### Setting current locale
+
+```javascript
+$.li18n.currentLocale = 'de';
+```
+
+### Overwrite missing translation behaviour
+
+```javascript
+$.li18n.translate = function(key) {
+  var translation = $.li18n._translate(key);
+  if (translation) {
+    return translation;
+  } else {
+    console.log('issing translation for key "' + key + '"');
+  }
+};
+```
+
 ## Testing
 * Install Node.js. For example with Homebrew (http://brew.sh/).
 
