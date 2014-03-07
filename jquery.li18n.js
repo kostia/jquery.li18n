@@ -1,39 +1,63 @@
 ;(function($) {
+  var getCurrentLocale = function() {
+    var currentLocale = $.li18n.currentLocale;
+    if (currentLocale) {
+      return currentLocale;
+    } else {
+      $.error('Missing current locale');
+    }
+  };
+
+  var getTranslations = function() {
+    var translations = $.li18n.translations;
+    if (translations) {
+      return translations;
+    } else {
+      $.error('Missing translations');
+    }
+  };
+
+  var getTranslationsForLocale = function(currentLocale) {
+    var translationsForLocale = getTranslations()[currentLocale];
+    if (translationsForLocale) {
+      return translationsForLocale;
+    } else {
+      $.error('Missing translations for current locale "' + currentLocale + '"');
+    }
+  };
+
   $.li18n = {
     _translate: function(key) {
-      var promise = $.Deferred();
-      var translations = $.li18n.locales[$.li18n.locale];
+      if (!key) {
+        return $.error('Tried to translate with an empty key');
+      }
 
-      if (translations) {
-        var translation = translations[key];
+      var currentLocale = getCurrentLocale();
+      var translationsForLocale = getTranslationsForLocale(currentLocale);
 
-        if (translation) {
-          promise.resolve(translation);
-        } else {
-          promise.reject();
-        }
-      } else {
-        promise.reject();
-      };
-
-      return promise;
+      return translationsForLocale[key];
     },
 
     translate: function(key) {
-      return $.li18n._translate(key);
+      var translation = $.li18n._translate(key);
+      if (translation) {
+        return translation;
+      } else {
+        $.error('Missing translation for key "' + key + '"');
+      }
     },
 
     reset: function() {
-      $.li18n.locales = {};
-      $.li18n.locale = 'en';
+      $.li18n.translations = {};
+      $.li18n.currentLocale = 'en';
     }
   };
 
   $.li18n.reset();
 
-  window._t = function(key) {
-    return $.li18n.translate(key).fail(function() {
-      $.error('Missing translation for "' + key + '"');
-    });
-  };
+  if (window) {
+    window._t = function(key) {
+      return $.li18n.translate(key);
+    };
+  }
 })(jQuery);

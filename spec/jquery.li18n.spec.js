@@ -11,108 +11,92 @@ describe('$.li18n', function() {
     $.li18n.reset();
   });
 
-  describe('default locale', function() {
+  describe('default current locale', function() {
     it('is "en"', function() {
-      expect($.li18n.locale).toBe('en');
+      expect($.li18n.currentLocale).toBe('en');
     });
   });
 
-  describe('default locales', function() {
+  describe('default translations', function() {
     it('is an empty object', function() {
-      expect($.li18n.locales).toEqual({});
+      expect($.li18n.translations).toEqual({});
     });
   });
 
-  describe('_t', function() {
-    describe('if key is found', function() {
-      it('it resolves with translation', function() {
-        var promiseResolved = false;
-
-        $.li18n.locales = {en: {spam: 'eggs'}};
-
-        window._t('spam').done(function(t) {
-          promiseResolved = true;
-          expect(t).toBe('eggs');
-        });
-
-        expect(promiseResolved).toBe(true);
+  describe('._translate', function() {
+    describe('if curren locale is missing', function() {
+      it('throws an error', function() {
+        $.li18n.currentLocale = null;
+        expect(function() {
+          $.li18n._translate('spam');
+        }).toThrow('Missing current locale');
       });
     });
 
-    describe('if key is not found', function() {
-      it('it raises an error', function() {
+    describe('if translations are missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = null;
         expect(function() {
-          window._t('spam');
-        }).toThrow('Missing translation for "spam"');
+          $.li18n._translate('spam');
+        }).toThrow('Missing translations');
+      });
+    });
+
+    describe('if translations for current locale is missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = {};
+        expect(function() {
+          $.li18n._translate('spam');
+        }).toThrow('Missing translations for current locale "en"');
+      });
+    });
+
+    describe('if key is missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = {en: {}};
+        expect(function() {
+          $.li18n._translate();
+        }).toThrow('Tried to translate with an empty key');
+      });
+    });
+
+    describe('if translation is missing', function() {
+      it('returns undefined', function() {
+        $.li18n.translations = {en: {}};
+        expect($.li18n._translate('spam')).toBe(undefined);
+      });
+    });
+
+    describe('if translation is present', function() {
+      it('returns the translation', function() {
+        $.li18n.translations = {en: {spam: 'eggs'}};
+        expect($.li18n._translate('spam')).toBe('eggs');
       });
     });
   });
 
   describe('.translate', function() {
-    beforeEach(function() {
-      $.li18n.locales = {
-        en: {
-          title: 'Hello!',
-          description: 'I am lightweight i18n for jQuery.'
-        },
-        de: {
-          title: 'Hallo!',
-          description: 'Ich bin eine leichgewichtige I18n für jQuery.'
-        }
-      };
-    });
-
-    describe('if key is found', function() {
-      it('resolves with translation', function() {
-        var promiseResolved = false;
-        var promiseRejected = false;
-
-        $.li18n.translate('title')
-        .done(function(translation) {
-          promiseResolved = true;
-          expect(translation).toBe('Hello!');
-        })
-        .fail(function() {
-          promiseRejected = true;
-        });
-
-        expect(promiseResolved).toBe(true);
-        expect(promiseRejected).toBe(false);
-
-        var promiseResolved = false;
-        var promiseRejected = false;
-
-        $.li18n.translate('description')
-        .done(function(translation) {
-          promiseResolved = true;
-          expect(translation).toBe('I am lightweight i18n for jQuery.');
-        })
-        .fail(function() {
-          promiseRejected = true;
-        });
-
-        expect(promiseResolved).toBe(true);
-        expect(promiseRejected).toBe(false);
+    describe('if translation is missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = {en: {}};
+        expect(function() {
+          $.li18n.translate('spam');
+        }).toThrow('Missing translation for key "spam"');
       });
     });
 
-    describe('if key is not found', function() {
-      it('rejects with no arguments', function() {
-        var promiseResolved = false;
-        var promiseRejected = false;
-
-        $.li18n.translate('missing')
-        .done(function(translation) {
-          promiseResolved = true;
-        })
-        .fail(function(args) {
-          promiseRejected = true;
-          expect(args).toBe(undefined);
-        });
-
-        expect(promiseResolved).toBe(false);
-        expect(promiseRejected).toBe(true);
+    describe('if translation is present', function() {
+      it('returns the translation', function() {
+        $.li18n.translations = {en: {spam: 'eggs'}};
+        expect($.li18n.translate('spam')).toBe('eggs');
       });
+    });
+  });
+
+  describe('window._t', function() {
+    it('delegates to $.li18n.translate', function() {
+      $.li18n.translations = {en: {spam: 'eggs'}};
+      expect(window._t('spam')).toBe('eggs');
     });
   });
 });

@@ -15,19 +15,9 @@ bower install jquery.li18n
 ## Usage
 
 ```javascript
-$.li18n.locales = {
-  en: {
-    title: 'Hello!'
-  }
-};
-
-_t('title').done(function(t) {
-  console.log(t);
-});
-// 'Hello!'
-
-_t('spam');
-// Error: Missing translation for spam
+$.li18n.translations = {en: {title: 'Hello!'}};
+_t('title'); // 'Hello!'
+_t('spam'); // Error: Missing translation for key "spam"
 ```
 
 ## Testing
