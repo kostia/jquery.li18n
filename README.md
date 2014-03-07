@@ -19,20 +19,12 @@ $.li18n.locales = {
   }
 };
 
-t = function(key) {
-  $.li18n.translate(key)
-  .done(function(translation) {
-    console.log(translation);
-  })
-  .fail(function() {
-    $.error('Missing translation for ' + key);
-  });
-};
+_t('title').done(function(t) {
+  console.log(t);
+});
+// 'Hello!'
 
-t('title');
-// => 'Hello!'
-
-t('spam');
+_t('spam');
 // Error: Missing translation for spam
 ```
 
