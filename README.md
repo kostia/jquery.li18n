@@ -14,31 +14,29 @@ bower install jquery.li18n
 
 ## Usage
 
+Play with it: http://jsfiddle.net/B8M4g/1/
+
 ```javascript
+
+// Basic usage
+
 $.li18n.translations = {en: {title: 'Hello!'}};
 _t('title'); // 'Hello!'
 _t('spam'); // Error: Missing translation for key "spam"
-```
 
-### Interpolation
+//  Interpolation
 
-```javascript
 $.li18n.translations = {en: {title: 'Hello %{{name}}!'}};
 _t('title', name: 'Alice'); // 'Hello Alice!'
 _t('title'); // Error: Too less interpolation options for key "title"
-```
 
-### Set current locale
+// Change locale
 
-```javascript
 $.li18n.currentLocale = 'de';
-```
 
-### On missing locale
+// On missing locale by default an error is raised. 
+// You can customize the behaviour by overwriting $.li18n.translate and using $.i18n._translate
 
-By default an error is raised. You can customize the behaviour by overwriting `$.li18n.translate`.
-
-```javascript
 $.li18n.translate = function(key) {
   var translation = $.li18n._translate(key);
   if (translation) {
