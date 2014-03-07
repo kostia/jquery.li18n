@@ -40,7 +40,7 @@ $.li18n.translate = function(key) {
   if (translation) {
     return translation;
   } else {
-    console.log('issing translation for key "' + key + '"');
+    console.log('Missing translation for key "' + key + '"');
   }
 };
 ```
