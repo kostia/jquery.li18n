@@ -1,6 +1,6 @@
 ;(function($) {
   $.li18n = {
-    translate: function(key) {
+    _translate: function(key) {
       var promise = $.Deferred();
       var translations = $.li18n.locales[$.li18n.locale];
 
@@ -17,6 +17,10 @@
       };
 
       return promise;
+    },
+
+    translate: function(key) {
+      return $.li18n._translate(key);
     },
 
     reset: function() {
