@@ -33,7 +33,8 @@ _t('title'); // Error: Too less interpolation options for key "title"
 $.li18n.currentLocale = 'de';
 
 // On missing locale by default an error is raised. 
-// You can customize the behaviour by overwriting $.li18n.translate and using $.i18n._translate
+// You can customize the behaviour by overwriting $.li18n.translate 
+// and using $.i18n._translate
 
 $.li18n.translate = function(key) {
   var translation = $.li18n._translate(key);
@@ -43,6 +44,12 @@ $.li18n.translate = function(key) {
     console.log('Missing translation for key "' + key + '"');
   }
 };
+
+// As Handlebars helper
+
+Handlebars.registerHelper('t', function(key, interpolationOptions) {
+  return new Handlebars.SafeString($.li18n.t(key, interpolationOptions));
+});
 ```
 
 ## Testing
