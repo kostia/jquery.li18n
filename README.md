@@ -31,7 +31,7 @@ _t('spam'); // Error: Missing translation for key "spam"
 //  Interpolation
 
 $.li18n.translations = {en: {title: 'Hello %{{name}}!'}};
-_t('title', name: 'Alice'); // 'Hello Alice!'
+_t('title', {name: 'Alice'}); // 'Hello Alice!'
 _t('title'); // Error: Too less interpolation options for key "title"
 
 // Change locale
