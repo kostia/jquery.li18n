@@ -4,6 +4,8 @@ Lightweight i18n for jQuery.
 
 [![Build Status](https://travis-ci.org/kostia/jquery.li18n.png)](https://travis-ci.org/kostia/jquery.li18n)
 
+## WARNING: this library is not yet stable!
+
 ## Installation
 
 ```
