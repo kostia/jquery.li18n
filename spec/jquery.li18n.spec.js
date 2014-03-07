@@ -72,6 +72,25 @@ describe('$.li18n', function() {
         $.li18n.translations = {en: {spam: 'eggs'}};
         expect($.li18n._translate('spam')).toBe('eggs');
       });
+
+      describe('with interpolation options', function() {
+        beforeEach(function() {
+          $.li18n.translations = {en: {spam: 'eggs %{{foo}} eggs %{{bar}} eggs'}};
+        });
+
+        it('returns interpolated translation', function() {
+          expect($.li18n._translate('spam', {foo: 'xxx', bar: 'yyy'}))
+            .toBe('eggs xxx eggs yyy eggs');
+        });
+
+        describe('and too less options', function() {
+          it('throws an error', function() {
+            expect(function() {
+              $.li18n._translate('spam', {foo: 'xxx'});
+            }).toThrow('Too less interpolation options for key "spam"');
+          });
+        });
+      });
     });
   });
 

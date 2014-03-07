@@ -20,13 +20,23 @@ _t('title'); // 'Hello!'
 _t('spam'); // Error: Missing translation for key "spam"
 ```
 
-### Setting current locale
+### Interpolation
+
+```javascript
+$.li18n.translations = {en: {title: 'Hello %{{name}}!'}};
+_t('title', name: 'Alice'); // 'Hello Alice!'
+_t('title'); // Error: Too less interpolation options for key "title"
+```
+
+### Set current locale
 
 ```javascript
 $.li18n.currentLocale = 'de';
 ```
 
-### Overwrite missing translation behaviour
+### On missing locale
+
+By default an error is raised. You can customize the behaviour by overwriting `$.li18n.translate`.
 
 ```javascript
 $.li18n.translate = function(key) {

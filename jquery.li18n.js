@@ -27,19 +27,33 @@
   };
 
   $.li18n = {
-    _translate: function(key) {
+    _translate: function(key, interpolationOptions) {
       if (!key) {
         return $.error('Tried to translate with an empty key');
       }
 
       var currentLocale = getCurrentLocale();
       var translationsForLocale = getTranslationsForLocale(currentLocale);
+      var translation = translationsForLocale[key];
 
-      return translationsForLocale[key];
+      if (interpolationOptions) {
+        $.each(interpolationOptions, function(interpolationKey, interpolationValue) {
+          var interpolationRegExp = new RegExp('%{{' + interpolationKey + '}}', 'g');
+          translation = translation.replace(interpolationRegExp, interpolationValue);
+        });
+
+        if (translation.match(/%{{.*}}/)) {
+          $.error('Too less interpolation options for key "' + key + '"');
+        }
+      }
+
+      if (translation) {
+        return translation;
+      }
     },
 
-    translate: function(key) {
-      var translation = $.li18n._translate(key);
+    translate: function(key, interpolationOptions) {
+      var translation = $.li18n._translate(key, interpolationOptions);
       if (translation) {
         return translation;
       } else {
@@ -56,8 +70,8 @@
   $.li18n.reset();
 
   if (window) {
-    window._t = function(key) {
-      return $.li18n.translate(key);
+    window._t = function(key, interpolationOptions) {
+      return $.li18n.translate(key, interpolationOptions);
     };
   }
 })(jQuery);
