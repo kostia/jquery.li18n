@@ -7,6 +7,10 @@ jqueryJasmine = require('jasmine-jquery');
 require('../jquery.li18n');
 
 describe('$.li18n', function() {
+  beforeEach(function() {
+    $.li18n.reset();
+  });
+
   describe('default locale', function() {
     it('is "en"', function() {
       expect($.li18n.locale).toBe('en');
