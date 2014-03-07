@@ -5,7 +5,8 @@
     "jquery": ">=1.8.3",
     "gulp": "^3.5.2",
     "gulp-concat": "^2.1.7",
-    "gulp-uglify": "^0.2.1"
+    "gulp-uglify": "^0.2.1",
+    "jshint": "^2.4.4"
   },
   "devDependencies": {
     "jasmine-jquery": "git://github.com/jeffchao/node-jasmine-jquery.git",
@@ -13,6 +14,6 @@
     "jsdom": "~0.10.1"
   },
   "scripts": {
-    "test": "jasmine-node spec"
+    "test": "jasmine-node spec && jshint jquery.li18n.js"
   }
 }
