@@ -27,6 +27,8 @@
   };
 
   $.li18n = {
+    version: '0.0.2',
+
     _translate: function(key, interpolationOptions) {
       if (!key) {
         return $.error('Tried to translate with an empty key');

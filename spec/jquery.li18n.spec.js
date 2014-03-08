@@ -23,6 +23,10 @@ describe('$.li18n', function() {
     });
   });
 
+  it('has a version', function() {
+    expect($.li18n.version).toMatch(/\d\.\d.\d/);
+  });
+
   describe('._translate', function() {
     describe('if curren locale is missing', function() {
       it('throws an error', function() {
