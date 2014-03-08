@@ -10,7 +10,7 @@ Lightweight i18n for jQuery.
 * It is lightweight: less than 100 LoC.
 * Full test coverage.
 
-## Installation
+## Installation <a href="http://bower.io/search/?q=jquery.li18n"><img src="https://github.com/benschwarz/bower-badges/raw/gh-pages/badge@2x.png" width="130" height="30"></a>
 
 ```
 bower install jquery.li18n
