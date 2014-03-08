@@ -38,9 +38,9 @@ _t('title'); // Error: Too less interpolation options for key "title"
 
 $.li18n.currentLocale = 'de';
 
-// On missing locale by default an error is raised. 
-// You can customize the behaviour by overwriting $.li18n.translate 
-// and using $.i18n._translate
+// If translation is missing, then by default an error is thrown.
+// You can change the behaviour by overwriting $.li18n.translate 
+// and using $.li18n._translate
 
 $.li18n.translate = function(key) {
   var translation = $.li18n._translate(key);
