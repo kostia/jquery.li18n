@@ -1,4 +1,8 @@
 {
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/kostia/jquery.li18n.git"
+  },
   "devDependencies": {
     "bower": "*",
     "express": "~3.2.6",
