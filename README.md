@@ -39,7 +39,7 @@ _t('title'); // Error: Too less interpolation options for key "title"
 $.li18n.currentLocale = 'de';
 
 // If translation is missing, then by default an error is thrown.
-// You can change the behaviour by overwriting $.li18n.translate 
+// You can change the behaviour by overwriting $.li18n.translate
 // and using $.li18n._translate
 
 $.li18n.translate = function(key) {
@@ -60,32 +60,28 @@ Handlebars.registerHelper('t', function(key, interpolationOptions) {
 
 ## Testing
 
+You will need Node.js in order to run tests.
+On OSX you can install Node.js with Homebrew (http://brew.sh/).
+
+### Install dependecies
+
 ```bash
-# Install Node.js. For example with Homebrew (http://brew.sh/).
-
-brew install nodejs
-
-# Install NPM modules
-
 npm install
 npm install -g bower
-npm install -g jasmine-jquery
-npm install -g jasmine-node
-
-# Install Bower components
-
 bower install
+```
 
-# Run specs
+### Run the tests
 
+```bash
 npm test
 ```
 
 ## Other i18n libraries
 
-* https://github.com/jquery/globalize
 * https://github.com/airbnb/polyglot.js
 * https://github.com/jamuhl/i18next
+* https://github.com/jquery/globalize
 * https://github.com/recurser/jquery-i18n
 * https://github.com/wikimedia/jquery.i18n
 
