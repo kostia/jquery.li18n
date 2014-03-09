@@ -71,7 +71,7 @@
 
   $.li18n.reset();
 
-  if (window) {
+  if (typeof window !== 'undefined') {
     window._t = function(key, interpolationOptions) {
       return $.li18n.translate(key, interpolationOptions);
     };
