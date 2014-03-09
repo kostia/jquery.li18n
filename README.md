@@ -79,11 +79,18 @@ npm test
 
 ## Other i18n libraries
 
-* https://github.com/airbnb/polyglot.js
-* https://github.com/jamuhl/i18next
-* https://github.com/jquery/globalize
-* https://github.com/recurser/jquery-i18n
-* https://github.com/wikimedia/jquery.i18n
+The comments do not aim to be objective in any way, but reflect my own subjective opinions.
+
+### Full-features heavyweights
+
+* https://github.com/jquery/globalize Standard i18n lib by jQuery guys.
+* https://github.com/airbnb/polyglot.js Feature list similar to `globalize`, but not specific to jQuery.
+
+### Lightweights
+
+* https://github.com/jamuhl/i18next Great i18n for jQuery, but does a little bit too much for my taste.
+* https://github.com/recurser/jquery-i18n Similar to `i18next`, but the API is `HTMLElement` scentric.
+* https://github.com/wikimedia/jquery.i18n Similar to `i18next`, unfortunately with some odd behaviour.
 
 ## License
 
