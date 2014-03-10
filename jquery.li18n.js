@@ -26,6 +26,32 @@
     }
   };
 
+  var getLocalizationsForLocale = function(currentLocale) {
+    var localizations = getTranslationsForLocale(currentLocale).l10n;
+    if (localizations) {
+      return localizations;
+    } else {
+      $.error('Missing localizations for current locale "' + currentLocale + '"');
+    }
+  };
+
+  var calculateLocalizationKey = function(object, options) {
+    if (object.l10nKey) {
+      if (typeof object.l10nKey === 'function') {
+        return object.l10nKey(options);
+      } else {
+        return object.l10nKey;
+      }
+    } else {
+      if (object instanceof Date) {
+        return 'date';
+      } else {
+        $.error("Don't know how to translate \"" + object + '"');
+      }
+    }
+  };
+
+
   $.li18n = {
     version: '0.0.3',
 
@@ -63,9 +89,27 @@
       }
     },
 
+    localize: function(object, options) {
+      if (!object) {
+        $.error('Tried to localize an empty object');
+      }
+
+      var currentLocale = getCurrentLocale();
+      var localizations = getLocalizationsForLocale(currentLocale);
+      var localizationKey = calculateLocalizationKey(object, options);
+      var format = localizations[localizationKey];
+
+      if (!$.li18n._localize) {
+        $.error('Missing localization function $.li18n._localize');
+      }
+
+      return $.li18n._localize(object, format, currentLocale, localizationKey, options);
+    },
+
     reset: function() {
       $.li18n.translations = {};
       $.li18n.currentLocale = 'en';
+      $.li18n._localize = null;
     }
   };
 
@@ -74,6 +118,10 @@
   if (typeof window !== 'undefined') {
     window._t = function(key, interpolationOptions) {
       return $.li18n.translate(key, interpolationOptions);
+    };
+
+    window._l = function(object, options) {
+      return $.li18n.localize(object, options);
     };
   }
 })(jQuery);

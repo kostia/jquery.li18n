@@ -1,6 +1,7 @@
 window = require('jsdom').jsdom().createWindow();
 document = window.document;
 jQuery = require('jquery');
+moment = require('../bower_components/moment/moment');
 $ = jQuery;
 jqueryJasmine = require('jasmine-jquery');
 
@@ -120,6 +121,143 @@ describe('$.li18n', function() {
     it('delegates to $.li18n.translate', function() {
       $.li18n.translations = {en: {spam: 'eggs'}};
       expect(window._t('spam')).toBe('eggs');
+    });
+  });
+
+  describe('.localize', function() {
+    describe('if current locale is missing', function() {
+      it('throws an error', function() {
+        $.li18n.currentLocale = null;
+        expect(function() {
+          $.li18n.localize(new Date());
+        }).toThrow('Missing current locale');
+      });
+    });
+
+    describe('if translations are missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = null;
+        expect(function() {
+          $.li18n.localize(new Date());
+        }).toThrow('Missing translations');
+      });
+    });
+
+    describe('if translations for current locale are missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = {};
+        expect(function() {
+          $.li18n.localize(new Date());
+        }).toThrow('Missing translations for current locale "en"');
+      });
+    });
+
+    describe('if object is missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = {en: {}};
+        expect(function() {
+          $.li18n.localize();
+        }).toThrow('Tried to localize an empty object');
+      });
+    });
+
+    describe('if localizations for current locale are missing', function() {
+      it('throws an error', function() {
+        $.li18n.translations = {en: {}};
+        expect(function() {
+          $.li18n.localize(new Date());
+        }).toThrow('Missing localizations for current locale "en"');
+      });
+    });
+
+    describe('with no localization function', function() {
+      it('throws an error', function() {
+        $.li18n.translations = {en: {l10n: {date: 'LLLL'}}};
+        expect(function() {
+          $.li18n.localize(new Date());
+        }).toThrow('Missing localization function $.li18n._localize');
+      });
+    });
+
+    describe('with a localization function', function() {
+      beforeEach(function() {
+        $.li18n.translations = {en: {l10n: {date: 'LLLL', dateShort: 'LL', dateVeryShort: 'L'}}};
+        $.li18n._localize = function(object, format, currentLocale, key, options) {
+          var localization = moment().lang(currentLocale).format(format) + key;
+          if (options && options.spam) {
+            localization += options.spam;
+          }
+          return localization;
+        };
+      });
+
+      describe('and no localization key', function() {
+        it('localizes with correct format', function() {
+          var date = new Date();
+          localization = moment(date).format('LLLL') + 'date';
+          expect($.li18n.localize(date)).toBe(localization);
+        });
+      });
+
+      describe('and localization key string', function() {
+        it('localizes with correct format', function() {
+          var date = new Date();
+          date.l10nKey = 'dateShort';
+          localization = moment(date).format('LL') + 'dateShort';
+          expect($.li18n.localize(date)).toBe(localization);
+        });
+      });
+
+      describe('and a localization key function', function() {
+        it('localizes with correct format', function() {
+          var date = new Date();
+          date.l10nKey = function() { return 'dateVeryShort'; };
+          localization = moment(date).format('L') + 'dateVeryShort';
+          expect($.li18n.localize(date)).toBe(localization);
+        });
+      });
+
+      describe('and a localization key function with options', function() {
+        it('localizes with correct format', function() {
+          var date = new Date();
+          date.l10nKey = function(options) { return options.realKey; };
+          localization = moment(date).format('L') + 'dateVeryShort';
+          expect($.li18n.localize(date, {realKey: 'dateVeryShort'})).toBe(localization);
+        });
+      });
+
+      describe('and localization options', function() {
+        it('localizes with correct format', function() {
+          var date = new Date();
+          localization = moment(date).format('LLLL') + 'dateeggs';
+          expect($.li18n.localize(date, {spam: 'eggs'})).toBe(localization);
+        });
+      });
+
+      describe('and an object with unknown localization key', function() {
+        it('throws an error', function() {
+          expect(function() {
+            $.li18n.localize({});
+          }).toThrow("Don't know how to translate \"[object Object]\"");
+        });
+      });
+    });
+  });
+
+  describe('window._l', function() {
+    it('delegates to $.li18n.localize', function() {
+      $.li18n.translations = {en: {l10n: {date: 'LLLL'}}};
+      $.li18n._localize = function(object, format, currentLocale, key, options) {
+        var localization = moment().lang(currentLocale).format(format) + key;
+        if (options && options.spam) {
+          localization += options.spam;
+        }
+        return localization;
+      };
+
+      var date = new Date();
+      localization = moment(date).format('LLLL') + 'dateeggs';
+      expect(window._l(new Date(), {spam: 'eggs'})).toBe(localization);
     });
   });
 });
