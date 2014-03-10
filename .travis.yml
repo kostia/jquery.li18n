@@ -8,3 +8,5 @@ before_script:
   - "npm i -g jasmine-jquery"
   - "npm i -g jasmine-node"
   - "npm i -g jshint"
+  - "npm i -g bower"
+  - "bower install"
