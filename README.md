@@ -51,10 +51,23 @@ $.li18n.translate = function(key) {
   }
 };
 
-// As Handlebars helper
+// There is no built-in localization, but you can plug in your own by setting $.li18n._localize.
+// For example with "Moment" (http://momentjs.com/)
+
+$.li18n.translations = {en: {l10n: {date: 'LLLL'}}};
+$.li18n._localize = function(date, format, currentLocale) {
+  return moment(date).lang(currentLocale).format(format);
+};
+_l(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
+
+// As Handlebars helpers
 
 Handlebars.registerHelper('t', function(key, interpolationOptions) {
-  return new Handlebars.SafeString($.li18n.t(key, interpolationOptions));
+  return new Handlebars.SafeString(_t(key, interpolationOptions));
+});
+
+Handlebars.registerHelper('l', function(object) {
+  return new Handlebars.SafeString(_l(object));
 });
 ```
 
