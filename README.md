@@ -59,9 +59,10 @@ $.li18n.translate = function(key) {
 };
 
 // >>> Localization <<<
-// There is no built-in localization.
-// You can plug in your own localization by setting $.li18n._localize function.
+// There is __no__ built-in localization.
+// But you can plug in your own localization by setting $.li18n._localize function.
 // For example with "Moment" (http://momentjs.com/)
+// Lookup keys for localizations are nested under the key 'l10n'.
 $.li18n.translations = {en: {l10n: {date: 'LLLL'}}};
 $.li18n._localize = function(object, format, currentLocale) {
   // 'object' is the object to be localized, e.g. a Date.
@@ -77,11 +78,36 @@ _l(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
 
 // >>> Advanced localization <<<
 // There are some advenced tumblers when doing localization.
-// First in $.li18n._localize you can also access 'key' and 'options':
+// First, in $.li18n._localize you can also access 'key' and 'options':
 $.li18n._localize = function(object, format, currentLocale, key, options) {
   // 'key' is the calculated lookup key for the given object.
   // 'options' are the opptions given to $.li18n.localize.
 }
+
+// Second, you can change the way the lookup key is calculated.
+// By default only Date objects have valid keys.
+// The lookup key for a Date object is 'date'.
+// If the given object has a property 'l10nKey', then it is used as the lookup key
+$.li18n.translations = {en: {l10n: {'date.short': 'LL'}}};
+var date = new Date('1971.01.01');
+date.l10nKey = 'date.short';
+$.li18n._localize = function(object, format, currentLocale) {
+  console.log(format);
+}
+_l(date) // Will be translated using ookup key 'date.short'
+
+// If the given object has a property 'l10nKey', which is a function,
+// then this function is used to calculate the lookup key.
+$.li18n.translations = {en: {l10n: {date: 'LLLL', 'date.short': 'LL'}}};
+var date = new Date('1971.01.01');
+date.l10nKey = function(options) {
+  return options.format && options.format.short ? 'date.short' : 'date';
+}
+$.li18n._localize = function(object, format, currentLocale) {
+  console.log(format);
+}
+_l(date) // Will be translatedlocalized using lookup key 'date'
+_l(date, format: 'short') // Will be localized using lookup key 'date.short'
 
 // >>> Handlebars integration <<<
 // You can use $.li18n in Handlebars helpers.
