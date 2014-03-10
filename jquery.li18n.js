@@ -1,38 +1,21 @@
 ;(function($) {
-  var getCurrentLocale = function() {
-    var currentLocale = $.li18n.currentLocale;
-    if (currentLocale) {
-      return currentLocale;
-    } else {
-      $.error('Missing current locale');
-    }
+  var assertPresent = function(value, errorMessage) {
+    return value ? value : $.error(errorMessage);
   };
 
-  var getTranslations = function() {
-    var translations = $.li18n.translations;
-    if (translations) {
-      return translations;
-    } else {
-      $.error('Missing translations');
-    }
+  var getCurrentLocale = function() {
+    return assertPresent($.li18n.currentLocale, 'Missing current locale');
   };
 
   var getTranslationsForLocale = function(currentLocale) {
-    var translationsForLocale = getTranslations()[currentLocale];
-    if (translationsForLocale) {
-      return translationsForLocale;
-    } else {
-      $.error('Missing translations for current locale "' + currentLocale + '"');
-    }
+    var translations = assertPresent($.li18n.translations, 'Missing translations');
+    return assertPresent(translations[currentLocale],
+        'Missing translations for current locale "' + currentLocale + '"');
   };
 
   var getLocalizationsForLocale = function(currentLocale) {
-    var localizations = getTranslationsForLocale(currentLocale).l10n;
-    if (localizations) {
-      return localizations;
-    } else {
-      $.error('Missing localizations for current locale "' + currentLocale + '"');
-    }
+    return assertPresent(getTranslationsForLocale(currentLocale).l10n,
+        'Missing localizations for current locale "' + currentLocale + '"');
   };
 
   var calculateLocalizationKey = function(object, options) {
@@ -56,9 +39,7 @@
     version: '0.0.3',
 
     _translate: function(key, interpolationOptions) {
-      if (!key) {
-        return $.error('Tried to translate with an empty key');
-      }
+      assertPresent(key, 'Tried to translate with an empty key');
 
       var currentLocale = getCurrentLocale();
       var translationsForLocale = getTranslationsForLocale(currentLocale);
@@ -81,28 +62,19 @@
     },
 
     translate: function(key, interpolationOptions) {
-      var translation = $.li18n._translate(key, interpolationOptions);
-      if (translation) {
-        return translation;
-      } else {
-        $.error('Missing translation for key "' + key + '"');
-      }
+      return assertPresent($.li18n._translate(key, interpolationOptions),
+            'Missing translation for key "' + key + '"');
     },
 
     localize: function(object, options) {
-      if (!object) {
-        $.error('Tried to localize an empty object');
-      }
+      assertPresent(object, 'Tried to localize an empty object');
 
       var currentLocale = getCurrentLocale();
       var localizations = getLocalizationsForLocale(currentLocale);
       var localizationKey = calculateLocalizationKey(object, options);
       var format = localizations[localizationKey];
 
-      if (!$.li18n._localize) {
-        $.error('Missing localization function $.li18n._localize');
-      }
-
+      assertPresent($.li18n._localize, 'Missing localization function $.li18n._localize');
       return $.li18n._localize(object, format, currentLocale, localizationKey, options);
     },
 
