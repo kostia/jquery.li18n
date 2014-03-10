@@ -46,7 +46,7 @@ describe('$.li18n', function() {
       });
     });
 
-    describe('if translations for current locale is missing', function() {
+    describe('if translations for current locale are missing', function() {
       it('throws an error', function() {
         $.li18n.translations = {};
         expect(function() {
