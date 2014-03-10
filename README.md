@@ -22,26 +22,33 @@ Play with it: http://jsfiddle.net/B8M4g/1/
 
 ```javascript
 
-// Basic usage
-
+// >>> Basic usage <<<
 $.li18n.translations = {en: {title: 'Hello!'}};
+$.li18n.translate('title'); // 'Hello!'
+$.li18n.translate('spam'); // Error: Missing translation for key "spam"
+
+// >>> Translation shortcut <<<
+// There is a shortcut attached to the window object.
 _t('title'); // 'Hello!'
-_t('spam'); // Error: Missing translation for key "spam"
 
-//  Interpolation
-
+// >>> Interpolation <<<
+// To use interpolation embed the placeholder within %{{...}}
+// and set the values through options.
 $.li18n.translations = {en: {title: 'Hello %{{name}}!'}};
 _t('title', {name: 'Alice'}); // 'Hello Alice!'
 _t('title'); // Error: Too less interpolation options for key "title"
 
-// Change locale
-
+// >>> Change locale <<<
+// Of course you can change the current locale whenever you want.
+$.li18n.translations = {en: {title: 'Hello!'}, de: {title: 'Hallo!'}};
+_t('title'); // 'Hello!'
 $.li18n.currentLocale = 'de';
+_t('title'); // 'Hallo!'
 
+// >>> Missing translations <<<
 // If translation is missing, then by default an error is thrown.
-// You can change the behaviour by overwriting $.li18n.translate
-// and using $.li18n._translate
-
+// You can change this behavior by overwriting $.li18n.translate.
+// You can access the original function through $.li18n._translate.
 $.li18n.translate = function(key) {
   var translation = $.li18n._translate(key);
   if (translation) {
@@ -51,23 +58,38 @@ $.li18n.translate = function(key) {
   }
 };
 
-// There is no built-in localization, but you can plug in your own by setting $.li18n._localize.
+// >>> Localization <<<
+// There is no built-in localization.
+// You can plug in your own localization by setting $.li18n._localize function.
 // For example with "Moment" (http://momentjs.com/)
-
 $.li18n.translations = {en: {l10n: {date: 'LLLL'}}};
-$.li18n._localize = function(date, format, currentLocale) {
-  return moment(date).lang(currentLocale).format(format);
+$.li18n._localize = function(object, format, currentLocale) {
+  // 'object' is the object to be localized, e.g. a Date.
+  // 'format' is the localization format for the given object.
+  // 'currentLocale' is the current locale...
+  return moment(object).lang(currentLocale).format(format);
 };
+$.li18n.localize(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
+
+// >>> Localization shortcut <<< 
+// There is also a shortcut for localization attached to the window object.
 _l(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
 
-// As Handlebars helpers
+// >>> Advanced localization <<<
+// There are some advenced tumblers when doing localization.
+// First in $.li18n._localize you can also access 'key' and 'options':
+$.li18n._localize = function(object, format, currentLocale, key, options) {
+  // 'key' is the calculated lookup key for the given object.
+  // 'options' are the opptions given to $.li18n.localize.
+}
 
+// >>> Handlebars integration <<<
+// You can use $.li18n in Handlebars helpers.
 Handlebars.registerHelper('t', function(key, interpolationOptions) {
-  return new Handlebars.SafeString(_t(key, interpolationOptions));
+  return _t(key, interpolationOptions);
 });
-
 Handlebars.registerHelper('l', function(object) {
-  return new Handlebars.SafeString(_l(object));
+  return _l(object);
 });
 ```
 
