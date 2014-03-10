@@ -1,4 +1,4 @@
-![Li18b](https://raw.github.com/kostia/jquery.li18n/master/li18n.png)
+![Li18n](https://kostia-github.s3.amazonaws.com/jquery.li18n.svg)
 
 Lightweight i18n for jQuery.
 
@@ -72,7 +72,7 @@ $.li18n._localize = function(object, format, currentLocale) {
 };
 $.li18n.localize(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
 
-// >>> Localization shortcut <<< 
+// >>> Localization shortcut <<<
 // There is also a shortcut for localization attached to the window object.
 _l(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
 
