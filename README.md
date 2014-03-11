@@ -107,7 +107,7 @@ $.li18n._localize = function(object, format, currentLocale) {
   console.log(format);
 }
 _l(date) // Will be translatedlocalized using lookup key 'date'
-_l(date, format: 'short') // Will be localized using lookup key 'date.short'
+_l(date, {format: 'short'}) // Will be localized using lookup key 'date.short'
 
 // >>> Handlebars integration <<<
 // You can use $.li18n in Handlebars helpers.
