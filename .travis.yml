@@ -6,4 +6,4 @@ branches:
   - master
 before_script:
   - "npm install -g bower"
-  - "bower install"
+  - "bower install | xargs echo"
