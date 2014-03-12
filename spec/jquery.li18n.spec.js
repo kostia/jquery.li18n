@@ -70,6 +70,27 @@ describe('$.li18n', function() {
         $.li18n.translations = {en: {}};
         expect($.li18n._translate('spam')).toBe(undefined);
       });
+
+      describe('with a fallback locale enabled', function() {
+        beforeEach(function() {
+          $.li18n.currentLocale = 'de';
+          $.li18n.fallbackLocale = 'en';
+        });
+
+        describe('and fallback translation is missing', function() {
+          it('returns undefined', function() {
+            $.li18n.translations = {en: {}, de: {}};
+            expect($.li18n._translate('spam')).toBe(undefined);
+          });
+        });
+
+        describe('and fallback translation is present', function() {
+          it('returns the translation', function() {
+            $.li18n.translations = {en: {spam: 'eggs'}, de: {}};
+            expect($.li18n._translate('spam')).toBe('eggs');
+          });
+        });
+      });
     });
 
     describe('if translation is present', function() {

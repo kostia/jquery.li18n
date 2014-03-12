@@ -45,6 +45,11 @@
       var translationsForLocale = getTranslationsForLocale(currentLocale);
       var translation = translationsForLocale[key];
 
+      if (!translation && $.li18n.fallbackLocale) {
+        var fallbackTranslationsForLocale = getTranslationsForLocale($.li18n.fallbackLocale);
+        translation = fallbackTranslationsForLocale[key];
+      }
+
       if (interpolationOptions) {
         $.each(interpolationOptions, function(interpolationKey, interpolationValue) {
           var interpolationRegExp = new RegExp('%{{' + interpolationKey + '}}', 'g');
@@ -79,9 +84,10 @@
     },
 
     reset: function() {
-      $.li18n.translations = {};
-      $.li18n.currentLocale = 'en';
-      $.li18n._localize = null;
+      $.li18n._localize      = null;
+      $.li18n.currentLocale  = 'en';
+      $.li18n.fallbackLocale = null;
+      $.li18n.translations   = {};
     }
   };
 
