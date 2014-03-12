@@ -93,12 +93,7 @@
   $.li18n.reset();
 
   if (typeof window !== 'undefined') {
-    window._t = function(key, interpolationOptions) {
-      return $.li18n.translate(key, interpolationOptions);
-    };
-
-    window._l = function(object, options) {
-      return $.li18n.localize(object, options);
-    };
+    window._t = $.li18n.translate;
+    window._l = $.li18n.localize;
   }
 })(jQuery);
