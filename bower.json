@@ -12,10 +12,14 @@
     "moment": "~2.5.1"
   },
   "keywords": [
-    "jquery",
     "i18n",
-    "translation",
-    "internationalization"
+    "internationalization",
+    "jquery",
+    "l10n",
+    "localization",
+    "localize",
+    "translate",
+    "translation"
   ],
   "license": "MIT",
   "homepage": "https://github.com/kostia/jquery.li18n",
