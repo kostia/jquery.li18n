@@ -68,7 +68,7 @@
 
     translate: function(key, interpolationOptions) {
       return assertPresent($.li18n._translate(key, interpolationOptions),
-            'Missing translation for key "' + key + '"');
+          'Missing translation for key "' + key + '"');
     },
 
     localize: function(object, options) {
