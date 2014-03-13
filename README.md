@@ -25,7 +25,6 @@ Play with it: http://jsfiddle.net/B8M4g/1/
 // >>> Basic usage <<<
 $.li18n.translations = {en: {title: 'Hello!'}};
 $.li18n.translate('title'); // 'Hello!'
-$.li18n.translate('spam'); // Error: Missing translation for key "spam"
 
 // >>> Translation shortcut <<<
 // There is a shortcut attached to the window object.
@@ -47,16 +46,23 @@ _t('title'); // 'Hallo!'
 
 // >>> Missing translations <<<
 // If translation is missing, then by default an error is thrown.
-// You can change this behavior by overwriting $.li18n.translate.
-// You can access the original function through $.li18n._translate.
-$.li18n.translate = function(key) {
-  var translation = $.li18n._translate(key);
-  if (translation) {
-    return translation;
+$.li18n.translate('spam'); // Error: Missing translation for key "spam"
+
+// You can change it to return an error message string instead.
+$.li18n.onTranslationMissing = 'message';
+$.li18n.translate('spam'); // 'Missing translation for key "spam" and locale "en"
+
+// Or specify your own handler.
+$.li18n.onTranslationMissing = function(key, currentLocale) {
+  if (currentLocale === 'de') {
+    return 'Übersetzung für "'+key+'" fehlt';
   } else {
-    console.log('Missing translation for key "' + key + '"');
+    return 'Missing translation for "'+key+'";
   }
 };
+$.li18n.translate('spam'); // 'Missing translation for "spam"'
+$.li18n.currentLocale = 'de';
+$.li18n.translate('spam'); // 'Übersetzung für "spam" fehlt'
 
 // >>> Localization <<<
 // There is __no__ built-in localization.
@@ -117,6 +123,16 @@ Handlebars.registerHelper('t', function(key, interpolationOptions) {
 Handlebars.registerHelper('l', function(object) {
   return _l(object);
 });
+
+// >>> Overwriting translation behaviour <<<
+// You can also completely overwrite the translation behaviour.
+// You can use $.li18n._translate for translation.
+// Note: $.li18n._translate does no missing translation handling.
+$.li18n.translations = {en: {spam: 'eggs'}};
+$.li18n.translate = function(key, interpolationOptions) {
+  return $.li18n._translate(key, interpolationOptions) + ' for sure';
+};
+$.li18n.translate('spam'); // 'eggs for sure'
 ```
 
 ## Testing
