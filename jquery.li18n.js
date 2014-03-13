@@ -92,8 +92,6 @@
 
   $.li18n.reset();
 
-  if (typeof window !== 'undefined') {
-    window._t = $.li18n.translate;
-    window._l = $.li18n.localize;
-  }
+  window._t = $.li18n.translate;
+  window._l = $.li18n.localize;
 })(jQuery);
