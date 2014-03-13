@@ -10,24 +10,24 @@
   var getTranslationsForLocale = function(currentLocale) {
     var translations = assertPresent($.li18n.translations, 'Missing translations');
     return assertPresent(translations[currentLocale],
-        'Missing translations for locale "' + currentLocale + '"');
+        'Missing translations for locale "'+currentLocale+'"');
   };
 
   var getLocalizationsForLocale = function(currentLocale) {
     return assertPresent(getTranslationsForLocale(currentLocale).l10n,
-        'Missing localizations for locale "' + currentLocale + '"');
+        'Missing localizations for locale "'+currentLocale+'"');
   };
 
   var calculateLocalizationKey = function(object, options) {
     if (object.l10nKey) {
       return (typeof object.l10nKey === 'function') ? object.l10nKey(options) : object.l10nKey;
     } else {
-      return (object instanceof Date) ? 'date' : $.error("Don't know how to localize \"" + object + '"');
+      return (object instanceof Date) ? 'date' : $.error("Don't know how to localize \""+object+'"');
     }
   };
 
   var handleMissingTranslation = function(key, currentLocale) {
-    var errorMessage = 'Missing translation for key "' + key + '" and locale "' + currentLocale + '"';
+    var errorMessage = 'Missing translation for key "'+key+'" and locale "'+currentLocale+'"';
     if ($.li18n.onTranslationMissing === 'message') {
       return errorMessage;
     } else if (typeof $.li18n.onTranslationMissing === 'function') {
@@ -54,12 +54,12 @@
 
       if (interpolationOptions) {
         $.each(interpolationOptions, function(interpolationKey, interpolationValue) {
-          var interpolationRegExp = new RegExp('%{{' + interpolationKey + '}}', 'g');
+          var interpolationRegExp = new RegExp('%{{'+interpolationKey+'}}', 'g');
           translation = translation.replace(interpolationRegExp, interpolationValue);
         });
 
         if (translation.match(/%{{.*}}/)) {
-          $.error('Too less interpolation options for key "' + key + '"');
+          $.error('Too less interpolation options for key "'+key+'"');
         }
       }
 

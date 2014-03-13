@@ -154,7 +154,7 @@ describe('$.li18n', function() {
       describe('with a custom missing translation handler function', function() {
         it('returns the error message', function() {
           $.li18n.onTranslationMissing = function(key, currentLocale) {
-            return 'Missing translation for "' + currentLocale + '.' + key + '"';
+            return 'Missing translation for "'+currentLocale+'.'+key+'"';
           };
           expect($.li18n.translate('spam')).toBe('Missing translation for "en.spam"');
         });
