@@ -52,7 +52,7 @@ describe('$.li18n', function() {
         $.li18n.translations = {};
         expect(function() {
           $.li18n._translate('spam');
-        }).toThrow('Missing translations for current locale "en"');
+        }).toThrow('Missing translations for locale "en"');
       });
     });
 
@@ -122,11 +122,42 @@ describe('$.li18n', function() {
 
   describe('.translate', function() {
     describe('if translation is missing', function() {
-      it('throws an error', function() {
+      beforeEach(function() {
         $.li18n.translations = {en: {}};
-        expect(function() {
-          $.li18n.translate('spam');
-        }).toThrow('Missing translation for key "spam"');
+      });
+
+      describe('with no missing translation handler', function() {
+        it('throws an error', function() {
+          expect(function() {
+            $.li18n.translate('spam');
+          }).toThrow('Missing translation for key "spam" and locale "en"');
+        });
+      });
+
+      describe('with a cumbersome missing translation handler', function() {
+        it('throws an error', function() {
+          $.li18n.onTranslationMissing = 'xxx';
+          expect(function() {
+            $.li18n.translate('spam');
+          }).toThrow('Missing translation for key "spam" and locale "en"');
+        });
+      });
+
+      describe('with a "message" missing translation handler', function() {
+        it('returns the error message', function() {
+          $.li18n.onTranslationMissing = 'message';
+          expect($.li18n.translate('spam'))
+              .toBe('Missing translation for key "spam" and locale "en"');
+        });
+      });
+
+      describe('with a custom missing translation handler function', function() {
+        it('returns the error message', function() {
+          $.li18n.onTranslationMissing = function(key, currentLocale) {
+            return 'Missing translation for "' + currentLocale + '.' + key + '"';
+          };
+          expect($.li18n.translate('spam')).toBe('Missing translation for "en.spam"');
+        });
       });
     });
 
@@ -169,7 +200,7 @@ describe('$.li18n', function() {
         $.li18n.translations = {};
         expect(function() {
           $.li18n.localize(new Date());
-        }).toThrow('Missing translations for current locale "en"');
+        }).toThrow('Missing translations for locale "en"');
       });
     });
 
@@ -187,7 +218,7 @@ describe('$.li18n', function() {
         $.li18n.translations = {en: {}};
         expect(function() {
           $.li18n.localize(new Date());
-        }).toThrow('Missing localizations for current locale "en"');
+        }).toThrow('Missing localizations for locale "en"');
       });
     });
 
@@ -259,7 +290,7 @@ describe('$.li18n', function() {
         it('throws an error', function() {
           expect(function() {
             $.li18n.localize({});
-          }).toThrow("Don't know how to translate \"[object Object]\"");
+          }).toThrow("Don't know how to localize \"[object Object]\"");
         });
       });
     });

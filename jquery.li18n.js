@@ -10,27 +10,30 @@
   var getTranslationsForLocale = function(currentLocale) {
     var translations = assertPresent($.li18n.translations, 'Missing translations');
     return assertPresent(translations[currentLocale],
-        'Missing translations for current locale "' + currentLocale + '"');
+        'Missing translations for locale "' + currentLocale + '"');
   };
 
   var getLocalizationsForLocale = function(currentLocale) {
     return assertPresent(getTranslationsForLocale(currentLocale).l10n,
-        'Missing localizations for current locale "' + currentLocale + '"');
+        'Missing localizations for locale "' + currentLocale + '"');
   };
 
   var calculateLocalizationKey = function(object, options) {
     if (object.l10nKey) {
-      if (typeof object.l10nKey === 'function') {
-        return object.l10nKey(options);
-      } else {
-        return object.l10nKey;
-      }
+      return (typeof object.l10nKey === 'function') ? object.l10nKey(options) : object.l10nKey;
     } else {
-      if (object instanceof Date) {
-        return 'date';
-      } else {
-        $.error("Don't know how to translate \"" + object + '"');
-      }
+      return (object instanceof Date) ? 'date' : $.error("Don't know how to localize \"" + object + '"');
+    }
+  };
+
+  var handleMissingTranslation = function(key, currentLocale) {
+    var errorMessage = 'Missing translation for key "' + key + '" and locale "' + currentLocale + '"';
+    if ($.li18n.onTranslationMissing === 'message') {
+      return errorMessage;
+    } else if (typeof $.li18n.onTranslationMissing === 'function') {
+      return $.li18n.onTranslationMissing(key, currentLocale);
+    } else {
+      $.error(errorMessage);
     }
   };
 
@@ -66,8 +69,8 @@
     },
 
     translate: function(key, interpolationOptions) {
-      return assertPresent($.li18n._translate(key, interpolationOptions),
-          'Missing translation for key "' + key + '"');
+      var translation = $.li18n._translate(key, interpolationOptions);
+      return translation ? translation : handleMissingTranslation(key, getCurrentLocale());
     },
 
     localize: function(object, options) {
