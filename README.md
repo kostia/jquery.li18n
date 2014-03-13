@@ -57,7 +57,7 @@ $.li18n.onTranslationMissing = function(key, currentLocale) {
   if (currentLocale === 'de') {
     return 'Übersetzung für "'+key+'" fehlt';
   } else {
-    return 'Missing translation for "'+key+'";
+    return 'Missing translation for "'+key+'"';
   }
 };
 $.li18n.translate('spam'); // 'Missing translation for "spam"'
