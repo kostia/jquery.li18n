@@ -129,3 +129,13 @@ $.li18n._localize // => null
 ```
 
 ---
+
+##### $.li18n.version
+
+Return current library version string.
+
+```javascript
+$.li18n.version // => 'X.Y.Z'
+```
+
+---
