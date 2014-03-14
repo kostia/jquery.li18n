@@ -86,10 +86,11 @@
     },
 
     reset: function() {
-      $.li18n._localize      = null;
-      $.li18n.currentLocale  = 'en';
-      $.li18n.fallbackLocale = null;
-      $.li18n.translations   = {};
+      $.li18n._localize            = null;
+      $.li18n.currentLocale        = 'en';
+      $.li18n.fallbackLocale       = null;
+      $.li18n.onTranslationMissing = null;
+      $.li18n.translations         = {};
     }
   };
 
