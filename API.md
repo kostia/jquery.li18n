@@ -106,3 +106,26 @@ $.li18n.localize(new Date('1971.01.0.1'));
 ```
 
 ---
+
+##### $.li18n.reset()
+
+Reset the library to defaults.
+
+```javascript
+$.li18n.translations = {de: {}};
+$.li18n.currentLocale = 'de';
+$.li18n.fallbackLocale = 'fr';
+$.li18n.onMissingLocale = 'message';
+$.li18n._localize = function() {};
+
+$.li18n.reset();
+
+$.li18n.translations // => {}
+$.li18n.currentLocale // => 'en'
+$.li18n.fallbackLocale // => null
+$.li18n.onMissingLocale // => null
+$.li18n._localize // => null
+
+```
+
+---
