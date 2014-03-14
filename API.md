@@ -115,7 +115,7 @@ Reset the library to defaults.
 $.li18n.translations = {de: {}};
 $.li18n.currentLocale = 'de';
 $.li18n.fallbackLocale = 'fr';
-$.li18n.onMissingLocale = 'message';
+$.li18n.onTranslationMissing = 'message';
 $.li18n._localize = function() {};
 
 $.li18n.reset();
@@ -123,7 +123,7 @@ $.li18n.reset();
 $.li18n.translations // => {}
 $.li18n.currentLocale // => 'en'
 $.li18n.fallbackLocale // => null
-$.li18n.onMissingLocale // => null
+$.li18n.onTranslationMissing // => null
 $.li18n._localize // => null
 
 ```
