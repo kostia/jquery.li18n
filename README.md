@@ -27,8 +27,8 @@ _t('greeting', {name: 'Alice'}); // => 'Hello Alice!'
 
 ## Documentation
 
-* [Howto](https://github.com/kostia/jquery.li18n/HOWTO.md)
-* [Detailed API](https://github.com/kostia/jquery.li18n/API.md)
+* [Howto](/HOWTO.md)
+* [Detailed API](/API.md)
 
 ## Testing
 
