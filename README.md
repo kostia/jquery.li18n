@@ -7,7 +7,7 @@ Lightweight i18n for jQuery.
 ## Why?
 
 * It does exactly what it promises: translation, interpolation, custom localization, locale fallback etc...
-* It is lightweight: less than 100 LoC.
+* It is lightweight: less than 100 SLOC.
 * Full test coverage.
 
 ## Installation <a href="http://bower.io/search/?q=jquery.li18n"><img src="https://github.com/benschwarz/bower-badges/raw/gh-pages/badge@2x.png" width="130" height="30"></a>
