@@ -6,7 +6,7 @@ Lightweight i18n for jQuery.
 
 ## Why?
 
-* It does exactly what it promises: translates with interpolations.
+* It does exactly what it promises: translation, interpolation, custom localization, locale fallback etc...
 * It is lightweight: less than 100 LoC.
 * Full test coverage.
 
@@ -18,122 +18,17 @@ bower install jquery.li18n
 
 ## Usage
 
-Play with it: http://jsfiddle.net/B8M4g/1/
-
 ```javascript
-
-// >>> Basic usage <<<
-$.li18n.translations = {en: {title: 'Hello!'}};
-$.li18n.translate('title'); // 'Hello!'
-
-// >>> Translation shortcut <<<
-// There is a shortcut attached to the window object.
-_t('title'); // 'Hello!'
-
-// >>> Interpolation <<<
-// To use interpolation embed the placeholder within %{{...}}
-// and set the values through options.
-$.li18n.translations = {en: {title: 'Hello %{{name}}!'}};
-_t('title', {name: 'Alice'}); // 'Hello Alice!'
-_t('title'); // Error: Too less interpolation options for key "title"
-
-// >>> Change locale <<<
-// Of course you can change the current locale whenever you want.
-$.li18n.translations = {en: {title: 'Hello!'}, de: {title: 'Hallo!'}};
-_t('title'); // 'Hello!'
-$.li18n.currentLocale = 'de';
-_t('title'); // 'Hallo!'
-
-// >>> Missing translations <<<
-// If translation is missing, then by default an error is thrown.
-$.li18n.translate('spam'); // Error: Missing translation for key "spam"
-
-// You can change it to return an error message string instead.
-$.li18n.onTranslationMissing = 'message';
-$.li18n.translate('spam'); // 'Missing translation for key "spam" and locale "en"
-
-// Or specify your own handler.
-$.li18n.onTranslationMissing = function(key, currentLocale) {
-  if (currentLocale === 'de') {
-    return 'Übersetzung für "'+key+'" fehlt';
-  } else {
-    return 'Missing translation for "'+key+'"';
-  }
-};
-$.li18n.translate('spam'); // 'Missing translation for "spam"'
-$.li18n.currentLocale = 'de';
-$.li18n.translate('spam'); // 'Übersetzung für "spam" fehlt'
-
-// >>> Localization <<<
-// There is __no__ built-in localization.
-// But you can plug in your own localization by setting $.li18n._localize function.
-// For example with "Moment" (http://momentjs.com/)
-// Lookup keys for localizations are nested under the key 'l10n'.
-$.li18n.translations = {en: {l10n: {date: 'LLLL'}}};
-$.li18n._localize = function(object, format, currentLocale) {
-  // 'object' is the object to be localized, e.g. a Date.
-  // 'format' is the localization format for the given object.
-  // 'currentLocale' is the current locale...
-  return moment(object).lang(currentLocale).format(format);
-};
-$.li18n.localize(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
-
-// >>> Localization shortcut <<<
-// There is also a shortcut for localization attached to the window object.
-_l(new Date('1971.01.01')); // 'Friday, January 1 1971 12:00 AM'
-
-// >>> Advanced localization <<<
-// There are some advenced tumblers when doing localization.
-// First, in $.li18n._localize you can also access 'key' and 'options':
-$.li18n._localize = function(object, format, currentLocale, key, options) {
-  // 'key' is the calculated lookup key for the given object.
-  // 'options' are the opptions given to $.li18n.localize.
-}
-
-// Second, you can change the way the lookup key is calculated.
-// By default only Date objects have valid keys.
-// The lookup key for a Date object is 'date'.
-// If the given object has a property 'l10nKey', then it is used as the lookup key
-$.li18n.translations = {en: {l10n: {'date.short': 'LL'}}};
-var date = new Date('1971.01.01');
-date.l10nKey = 'date.short';
-$.li18n._localize = function(object, format, currentLocale) {
-  console.log(format);
-}
-_l(date) // Will be translated using ookup key 'date.short'
-
-// If the given object has a property 'l10nKey', which is a function,
-// then this function is used to calculate the lookup key.
-$.li18n.translations = {en: {l10n: {date: 'LLLL', 'date.short': 'LL'}}};
-var date = new Date('1971.01.01');
-date.l10nKey = function(options) {
-  return options.format && options.format.short ? 'date.short' : 'date';
-}
-$.li18n._localize = function(object, format, currentLocale) {
-  console.log(format);
-}
-_l(date) // Will be translatedlocalized using lookup key 'date'
-_l(date, {format: 'short'}) // Will be localized using lookup key 'date.short'
-
-// >>> Handlebars integration <<<
-// You can use $.li18n in Handlebars helpers.
-Handlebars.registerHelper('t', function(key, interpolationOptions) {
-  return _t(key, interpolationOptions);
-});
-Handlebars.registerHelper('l', function(object) {
-  return _l(object);
-});
-
-// >>> Overwriting translation behaviour <<<
-// You can also completely overwrite the translation behaviour.
-// You can use $.li18n._translate for translation.
-// Note: $.li18n._translate does no missing translation handling.
-$.li18n.translations = {en: {spam: 'eggs'}};
-$.li18n.translate = function(key, interpolationOptions) {
-  return $.li18n._translate(key, interpolationOptions) + ' for sure';
-};
-$.li18n.translate('spam'); // 'eggs for sure'
+$.li18n.translations = {de: {greeting: 'Hello %{{name}}!'}};
+$.li18n.currentLocale = 'de'
+$.li18n.translate('greeting', {name: 'Alice'}); // => 'Hello Alice!'
+_t('greeting', {name: 'Alice'}); // => 'Hello Alice!'
 ```
+
+## Documentation
+
+* [Howto](https://github.com/kostia/jquery.li18n/HOWTO.md)
+* [Detailed API](https://github.com/kostia/jquery.li18n/API.md)
 
 ## Testing
 
