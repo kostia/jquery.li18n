@@ -189,5 +189,3 @@ Return current library version string.
 $.li18n.version // => 'X.Y.Z'
 ```
 
----
-
