@@ -40,9 +40,9 @@ $.li18n.translations = {en: {greeing: 'Hello %{{name}}'}};
 
 Translates the given key using interpolation options.
 
-Params:
-  * key - translation lookup key (`String`).
-  * interpolationOptions - options for translations with interpolation (`Object`).
+Arguments:
+  * `key` - translation lookup key (`String`).
+  * `interpolationOptions` - options for translations with interpolation (`Object`).
 
 Returns:
   * translation (`String`) if found.
@@ -65,15 +65,15 @@ when the function `$.li18n.localize` is called.
 
 Default is `null`.
 
-Params:
-  * object - is the object to be localized. By default only `Date` objects are supported.
-  * format - is the localization format for the given object.
-  * currentLocale - is the current locale.
-  * localizationKey - is the key under which the format for localization has been looked up.
+Callback arguments:
+  * `object` - is the object to be localized. By default only `Date` objects are supported.
+  * `format` - is the localization format for the given object.
+  * `currentLocale` - is the current locale.
+  * `localizationKey` - is the key under which the format for localization has been looked up.
     All localization keys are stored in the `l10n` key in the translations object.
     By default only `Date` objects have localization keys.
     A key of a `Date` object is `date`.
-  * options - are the options provided to the function `$.li18n.localize`.
+  * `options` - are the options provided to the function `$.li18n.localize`.
 
 ```javascript
 $.li18n.translations = {en: {l10n: {date: 'LL'}}};
@@ -92,9 +92,9 @@ Localize the given object using options.
 When this function is called, the format localization format is looked up
 and the function `$.li18n._localize` is called with the `object` and the looked up format is called.
 
-Params:
-  * object - is the object to be localized.
-  * options - are the options provided to the function `$.li18n.localize`.
+Arguments:
+  * `object` - is the object to be localized.
+  * `options` - are the options provided to the function `$.li18n.localize`.
 
 ```javascript
 $.li18n.translations = {en: {l10n: {date: 'LL'}}};
@@ -136,6 +136,57 @@ Return current library version string.
 
 ```javascript
 $.li18n.version // => 'X.Y.Z'
+```
+
+---
+
+##### $.li18n.onTranslationMissing = handler
+
+Set the handler to be called when a translation has not been found.
+
+Possible values:
+  * `'message'`
+  * `'error'`
+
+Default is `null`.
+
+In case of a cumbersome value `'error'` handler is assumed.
+With the `'error'` handler a missing translation will throw an error.
+With the `'message'` handler a missing translation will return an error string.
+
+```javascript
+$.li18n.translations = {en: {}};
+$.li18n.translate('spam');
+// => Error: 'Missing translation for key "spam" and locale "en"'
+$.li18n.onTranslationMissing = 'message';
+// => 'Missing translation for key "spam" and locale "en"'
+```
+
+##### $.li18n.onTranslationMissing = function(key, currentLocale)
+
+Set the function to be called when a translation has not been found.
+
+Callback arguments:
+  * `key` - translation lookup key (`String`).
+  * `currentLocale` - is the current locale.
+
+```javascript
+$.li18n.translations = {en: {}};
+$.li18n.onTranslationMissing = function(key, currentLocale) {
+  if (currentLocale === 'de') {
+    return 'Übersetzung für Schlüssel "' + key + '" fehlt';
+  } else {
+    return 'Missing translation for key "' + key + '" is missing';
+  }
+};
+
+$.li18n.currentLocale = 'en'
+$.li18n.translate('spam');
+// => 'Missing translation for key "spam" is missing'
+
+$.li18n.currentLocale = 'de'
+$.li18n.translate('spam');
+// => 'Übersetzung für Schlüssel "spam" fehlt'
 ```
 
 ---
