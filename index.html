@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>jquery.li18n by kostia</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>jquery.li18n</h1>
+        <p>Lightweight i18n for jQuery.</p>
+
+        <p class="view"><a href="https://github.com/kostia/jquery.li18n">View the Project on GitHub <small>kostia/jquery.li18n</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/kostia/jquery.li18n/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kostia/jquery.li18n/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kostia/jquery.li18n">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="https://kostia-github.s3.amazonaws.com/jquery.li18n.svg" alt="Li18n"></p>
+
+<p>Lightweight i18n for jQuery.</p>
+
+<p><a href="https://travis-ci.org/kostia/jquery.li18n"><img src="https://travis-ci.org/kostia/jquery.li18n.png" alt="Build Status"></a></p>
+
+<h2>
+<a name="why" class="anchor" href="#why"><span class="octicon octicon-link"></span></a>Why?</h2>
+
+<ul>
+<li>It does exactly what it promises: translation, interpolation, custom localization, locale fallback etc...</li>
+<li>It is lightweight: less than 100 SLOC.</li>
+<li>Full test coverage.</li>
+</ul><h2>
+<a name="installation-" class="anchor" href="#installation-"><span class="octicon octicon-link"></span></a>Installation <a href="http://bower.io/search/?q=jquery.li18n"><img src="https://github.com/benschwarz/bower-badges/raw/gh-pages/badge@2x.png" width="130" height="30"></a>
+</h2>
+
+<pre><code>bower install jquery.li18n
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">.</span><span class="nx">li18n</span><span class="p">.</span><span class="nx">translations</span> <span class="o">=</span> <span class="p">{</span><span class="nx">de</span><span class="o">:</span> <span class="p">{</span><span class="nx">greeting</span><span class="o">:</span> <span class="s1">'Hello %{{name}}!'</span><span class="p">}};</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">li18n</span><span class="p">.</span><span class="nx">currentLocale</span> <span class="o">=</span> <span class="s1">'de'</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">li18n</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="s1">'greeting'</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'Alice'</span><span class="p">});</span> <span class="c1">// =&gt; 'Hello Alice!'</span>
+<span class="nx">_t</span><span class="p">(</span><span class="s1">'greeting'</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">'Alice'</span><span class="p">});</span> <span class="c1">// =&gt; 'Hello Alice!'</span>
+</pre></div>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<ul>
+<li><a href="/HOWTO.md">HOWTOs</a></li>
+<li><a href="/API.md">Detailed API</a></li>
+</ul><h2>
+<a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h2>
+
+<p>You will need Node.js in order to run tests.
+On OSX you can install Node.js with Homebrew (<a href="http://brew.sh/">http://brew.sh/</a>).</p>
+
+<h3>
+<a name="install-dependecies" class="anchor" href="#install-dependecies"><span class="octicon octicon-link"></span></a>Install dependecies</h3>
+
+<div class="highlight highlight-bash"><pre>npm install
+npm install -g bower
+bower install
+</pre></div>
+
+<h3>
+<a name="run-the-tests" class="anchor" href="#run-the-tests"><span class="octicon octicon-link"></span></a>Run the tests</h3>
+
+<div class="highlight highlight-bash"><pre>npm <span class="nb">test</span>
+</pre></div>
+
+<h2>
+<a name="other-i18n-libraries" class="anchor" href="#other-i18n-libraries"><span class="octicon octicon-link"></span></a>Other i18n libraries</h2>
+
+<p>The comments do not aim to be objective in any way, but reflect my own subjective opinions.</p>
+
+<h3>
+<a name="full-features-heavyweights" class="anchor" href="#full-features-heavyweights"><span class="octicon octicon-link"></span></a>Full-features heavyweights</h3>
+
+<ul>
+<li>
+<a href="https://github.com/jquery/globalize">https://github.com/jquery/globalize</a> Standard i18n lib by jQuery guys.</li>
+<li>
+<a href="https://github.com/airbnb/polyglot.js">https://github.com/airbnb/polyglot.js</a> Feature list similar to <code>globalize</code>, but not specific to jQuery.</li>
+</ul><h3>
+<a name="lightweights" class="anchor" href="#lightweights"><span class="octicon octicon-link"></span></a>Lightweights</h3>
+
+<ul>
+<li>
+<a href="https://github.com/jamuhl/i18next">https://github.com/jamuhl/i18next</a> Great i18n for jQuery, but does a little bit too much for my taste.</li>
+<li>
+<a href="https://github.com/recurser/jquery-i18n">https://github.com/recurser/jquery-i18n</a> Similar to <code>i18next</code>, but the API is <code>HTMLElement</code> scentric.</li>
+<li>
+<a href="https://github.com/wikimedia/jquery.i18n">https://github.com/wikimedia/jquery.i18n</a> Similar to <code>i18next</code>, unfortunately with some odd behaviour.</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License (MIT)</p>
+
+<p>Copyright (c) 2014 Kostiantyn Kahanskyi</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/kostia">kostia</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
