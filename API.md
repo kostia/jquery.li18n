@@ -2,7 +2,7 @@
 
 ##### $.li18n.currentLocale = locale
 
-Set the current locale.
+Set the current locale `String`.
 
 Default is `'en'`.
 
@@ -12,26 +12,26 @@ $.li18n.currentLocale = 'de';
 
 ---
 
-##### $.li18n.fallbackLocale = locale
-
-Set the fallback locale.
-
-Default is `null`.
-
-```javascript
-$.li18n.fallbackLocale = 'en';
-```
-
----
-
 ##### $.li18n.translations = translations
 
-Set the translations.
+Set the translations `Object`.
 
 Default is `{}`.
 
 ```javascript
 $.li18n.translations = {en: {greeing: 'Hello %{{name}}'}};
+```
+
+---
+
+##### $.li18n.fallbackLocale = locale
+
+Set the fallback locale `String`.
+
+Default is `null`.
+
+```javascript
+$.li18n.fallbackLocale = 'en';
 ```
 
 ---
@@ -53,6 +53,57 @@ Returns:
 ```javascript
 $.li18n.translate('greeting', {name: 'Alice'});
 // => 'Hello Alice!'
+```
+
+---
+
+##### $.li18n.onTranslationMissing = handler
+
+Set the handler name `String` to be called when a translation has not been found.
+
+Possible values:
+  * `'message'`
+  * `'error'`
+
+Default is `null`.
+
+In case of a cumbersome value `'error'` is assumed.
+With the `'error'` a missing translation will throw an error.
+With the `'message'` a missing translation will return an error string.
+
+```javascript
+$.li18n.translations = {en: {}};
+$.li18n.translate('spam');
+// => Error: 'Missing translation for key "spam" and locale "en"'
+$.li18n.onTranslationMissing = 'message';
+// => 'Missing translation for key "spam" and locale "en"'
+```
+
+##### $.li18n.onTranslationMissing = function(key, currentLocale)
+
+Set the handler function to be called when a translation has not been found.
+
+Callback arguments:
+  * `key` - translation lookup key.
+  * `currentLocale` - is the current locale.
+
+```javascript
+$.li18n.translations = {en: {}};
+$.li18n.onTranslationMissing = function(key, currentLocale) {
+  if (currentLocale === 'de') {
+    return 'Übersetzung für Schlüssel "' + key + '" fehlt';
+  } else {
+    return 'Missing translation for key "' + key + '" is missing';
+  }
+};
+
+$.li18n.currentLocale = 'en'
+$.li18n.translate('spam');
+// => 'Missing translation for key "spam" is missing'
+
+$.li18n.currentLocale = 'de'
+$.li18n.translate('spam');
+// => 'Übersetzung für Schlüssel "spam" fehlt'
 ```
 
 ---
@@ -140,53 +191,3 @@ $.li18n.version // => 'X.Y.Z'
 
 ---
 
-##### $.li18n.onTranslationMissing = handler
-
-Set the handler to be called when a translation has not been found.
-
-Possible values:
-  * `'message'`
-  * `'error'`
-
-Default is `null`.
-
-In case of a cumbersome value `'error'` handler is assumed.
-With the `'error'` handler a missing translation will throw an error.
-With the `'message'` handler a missing translation will return an error string.
-
-```javascript
-$.li18n.translations = {en: {}};
-$.li18n.translate('spam');
-// => Error: 'Missing translation for key "spam" and locale "en"'
-$.li18n.onTranslationMissing = 'message';
-// => 'Missing translation for key "spam" and locale "en"'
-```
-
-##### $.li18n.onTranslationMissing = function(key, currentLocale)
-
-Set the function to be called when a translation has not been found.
-
-Callback arguments:
-  * `key` - translation lookup key (`String`).
-  * `currentLocale` - is the current locale.
-
-```javascript
-$.li18n.translations = {en: {}};
-$.li18n.onTranslationMissing = function(key, currentLocale) {
-  if (currentLocale === 'de') {
-    return 'Übersetzung für Schlüssel "' + key + '" fehlt';
-  } else {
-    return 'Missing translation for key "' + key + '" is missing';
-  }
-};
-
-$.li18n.currentLocale = 'en'
-$.li18n.translate('spam');
-// => 'Missing translation for key "spam" is missing'
-
-$.li18n.currentLocale = 'de'
-$.li18n.translate('spam');
-// => 'Übersetzung für Schlüssel "spam" fehlt'
-```
-
----

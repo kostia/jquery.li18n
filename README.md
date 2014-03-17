@@ -27,7 +27,7 @@ _t('greeting', {name: 'Alice'}); // => 'Hello Alice!'
 
 ## Documentation
 
-* [Howto](/HOWTO.md)
+* [HOWTOs](/HOWTO.md)
 * [Detailed API](/API.md)
 
 ## Testing
