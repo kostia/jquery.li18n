@@ -22,7 +22,7 @@
     "translation"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/kostia/jquery.li18n",
+  "homepage": "http://kostia.github.io/jquery.li18n",
   "ignore": [
     "**/.*",
     "node_modules",
