@@ -1,6 +1,6 @@
 # HOWTOs
 
-#### Basic Usage http://jsfiddle.net/pf59z/1/
+#### Basic Usage http://jsfiddle.net/pf59z/2/
 
 ```javascript
 $.li18n.translations = {de: {greeting: 'Hallo %{{name}}'}};
@@ -11,7 +11,7 @@ $.li18n.translate('greeting', {name: 'Alice'});
 
 ---
 
-#### Shortcuts http://jsfiddle.net/pf59z/1/
+#### Shortcuts http://jsfiddle.net/pf59z/2/
 
 ```javascript
 _t('spam');
@@ -23,7 +23,7 @@ _l(new Date('1971.01.01'));
 
 ---
 
-#### Localization with Moment.js http://jsfiddle.net/5zaaw/1/
+#### Localization with Moment.js http://jsfiddle.net/5zaaw/2/
 
 ```javascript
 $.li18n.translations = {en: {l10n: {date: 'LL'}}};
