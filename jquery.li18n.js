@@ -38,7 +38,7 @@
   };
 
   $.li18n = {
-    version: '0.1.0',
+    version: '0.1.1',
 
     _translate: function(key, interpolationOptions) {
       assertPresent(key, 'Tried to translate with an empty key');
