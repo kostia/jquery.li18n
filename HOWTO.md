@@ -1,6 +1,6 @@
 # HOWTOs
 
-#### Basic Usage
+#### Basic Usage http://jsfiddle.net/pf59z/1/
 
 ```javascript
 $.li18n.translations = {de: {greeting: 'Hallo %{{name}}'}};
@@ -11,7 +11,7 @@ $.li18n.translate('greeting', {name: 'Alice'});
 
 ---
 
-#### Shortcuts
+#### Shortcuts http://jsfiddle.net/pf59z/1/
 
 ```javascript
 _t('spam');
@@ -23,7 +23,7 @@ _l(new Date('1971.01.01'));
 
 ---
 
-#### Localization with Moment.js
+#### Localization with Moment.js http://jsfiddle.net/5zaaw/1/
 
 ```javascript
 $.li18n.translations = {en: {l10n: {date: 'LL'}}};
@@ -36,7 +36,7 @@ $.li18n.localize(new Date('1971.01.0.1'));
 
 ---
 
-#### Handlebars Helpers
+#### Handlebars Helpers http://jsfiddle.net/9uYkR/1/
 
 ```javascript
 Handlebars.registerHelper('_t', $.li18n.translate);
@@ -45,7 +45,7 @@ Handlebars.registerHelper('_l', $.li18n.localize);
 
 ---
 
-#### Fallbacks Language
+#### Fallbacks Language http://jsfiddle.net/xeAQC/1/
 
 ```javascript
 $.li18n.translations = {en: {spam: 'eggs'}};
@@ -61,7 +61,7 @@ $.li18n.translate('spam')
 
 ---
 
-#### Handling Missing Translations
+#### Handling Missing Translations http://jsfiddle.net/knH65/2/
 
 ```javascript
 $.li18n.translations = {en: {}};
