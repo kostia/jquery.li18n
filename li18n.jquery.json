@@ -1,0 +1,38 @@
+{
+  "name": "li18n",
+  "title": "jQuery Li18n",
+  "description": "Lightweight i18n for jQuery.",
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "jquery",
+    "l10n",
+    "localization",
+    "localize",
+    "translate",
+    "translation"
+  ],
+  "version": "0.1.0",
+  "author": {
+    "name": "Kostiantyn Kahanskyi",
+    "email": "kostiantyn.kahanskyi@googlemail.com"
+  },
+  "maintainers": [
+    {
+      "name": "Kostiantyn Kahanskyi",
+      "email": "kostiantyn.kahanskyi@googlemail.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+    }
+  ],
+  "homepage": "http://kostia.github.io/jquery.li18n",
+  "docs": "http://kostia.github.io/jquery.li18n",
+  "bugs": "https://github.com/kostia/jquery.li18n/issues",
+  "dependencies": {
+    "jquery": ">=1.8.3"
+  }
+}
