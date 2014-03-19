@@ -57,6 +57,13 @@ bower install
 npm test
 ```
 
+## Building
+
+```bash
+npm install -g gulp
+gulp build
+```
+
 ## Other i18n libraries
 
 The following does not aim to be objective in any way, but only reflects my opinion.
