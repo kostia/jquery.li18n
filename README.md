@@ -33,9 +33,11 @@ $.li18n.translate('greeting', {name: 'Alice'}); // => 'Hello Alice!'
 _t('greeting', {name: 'Alice'}); // => 'Hello Alice!'
 ```
 
+Live example: http://jsfiddle.net/pf59z/2/
+
 ## Documentation
 
-* [HOWTOs](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md)
+* [HOWTOs with live examples](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md)
 * [Detailed API](https://github.com/kostia/jquery.li18n/blob/master/API.md)
 
 ## Testing
