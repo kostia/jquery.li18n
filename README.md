@@ -2,7 +2,7 @@
 
 Lightweight i18n for jQuery.
 
-[![Build Status](https://travis-ci.org/kostia/jquery.li18n.png)](https://travis-ci.org/kostia/jquery.li18n)
+![Build Status](https://img.shields.io/travis/kostia/jquery.li18n.svg)
 
 ## Why?
 
