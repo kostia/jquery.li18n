@@ -2,7 +2,9 @@
 
 Lightweight i18n for jQuery.
 
-![Build Status](https://img.shields.io/travis/kostia/jquery.li18n.svg)
+<a href="https://travis-ci.org/kostia/jquery.li18n"><img src="https://img.shields.io/travis/kostia/jquery.li18n.svg" /></a>
+<a href="http://bower.io/search/?q=li18n"><img src="https://img.shields.io/badge/bower-0.1.2-ffcc2f.svg" /></a>
+<a href="https://plugins.jquery.com/li18n"><img src="https://img.shields.io/badge/jquery--plugin-0.1.2-blue.svg" /></a>
 
 ## Why?
 
@@ -18,7 +20,7 @@ Lightweight i18n for jQuery.
 * Translation fallbacks
 * Missing translations handling
 
-## Installation <a href="http://bower.io/search/?q=jquery.li18n"><img src="https://github.com/benschwarz/bower-badges/raw/gh-pages/badge@2x.png" width="130" height="30"></a>
+## Installation
 
 ```
 bower install jquery.li18n
