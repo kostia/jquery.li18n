@@ -17,8 +17,9 @@ Lightweight i18n for jQuery.
 * Translation
 * Interpolation
 * Localization framework
-* Translation fallbacks
-* Missing translations handling
+* Shortcuts
+* Fallbacks
+* Error handling
 
 ## Installation
 
