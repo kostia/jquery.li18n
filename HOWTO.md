@@ -92,13 +92,14 @@ $.li18n.translate('spam');
 
 #### Rails integration
 
-First install `jquery.li18n` with Bower and link it:
+First install `jquery.li18n` with Bower and link it.
 
 ```bash
 bower install jquery.li18n
 ln -s bower_components/jquery.li18n/jquery.li18n.js app/assets/javascripts/
 ```
 
+In this example we'll use german locales, so create `config/locales/de.yml` or otherwise `I18n` would raise an error.
 Then setup an example controller:
 
 ```ruby
