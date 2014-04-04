@@ -1,5 +1,15 @@
 # HOWTOs
 
+* [Basic Usage](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#basic-usage)
+* [Shortcuts](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#shortcuts)
+* [Localization with Moment.js](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#localization-with-momentjs)
+* [Handlebars Helpers](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#handlebars-helpers)
+* [Fallbacks Language](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#fallbacks-language)
+* [Handling Missing Translations](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#handling-missing-translations)
+* [Rails integration](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#rails-integration)
+
+---
+
 #### Basic Usage
 ##### http://jsfiddle.net/pf59z/2/
 
