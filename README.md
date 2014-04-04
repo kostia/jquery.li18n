@@ -11,6 +11,7 @@ Lightweight i18n for jQuery.
 * It does exactly what it promises.
 * It is lightweight: less than 100 SLOC.
 * Full test coverage.
+* Well documented.
 
 ## Features
 
