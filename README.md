@@ -92,6 +92,11 @@ The following does not aim to be objective in any way, but only reflects my opin
 * https://github.com/recurser/jquery-i18n Similar to `i18next`, but the API is `HTMLElement` scentric.
 * https://github.com/wikimedia/jquery.i18n Similar to `i18next`, but unfortunately with some odd behaviour.
 
+## Contributing
+
+* In case of a feature request or a bug feel free to file an issue describing the requested feature or the buggy behavior: https://github.com/kostia/jquery.li18n/issues.
+* If you want to help out with coding, then make sure the test suite is green before issuing a pull request: https://github.com/kostia/jquery.li18n/pulls.
+
 ## License
 
 The MIT License (MIT)
