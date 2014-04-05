@@ -6,7 +6,7 @@
 * [Handlebars Helpers](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#handlebars-helpers)
 * [Fallbacks Language](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#fallbacks-language)
 * [Handling Missing Translations](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#handling-missing-translations)
-* [Rails integration](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#rails-integration)
+* [Rails Integration](https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#rails-integration)
 
 ---
 
@@ -76,7 +76,7 @@ $.li18n.translate('spam')
 
 ---
 
-#### Handling Missing Translations 
+#### Handling Missing Translations
 ##### http://jsfiddle.net/knH65/2/
 
 ```javascript
@@ -106,17 +106,27 @@ $.li18n.translate('spam');
 
 ---
 
-#### Rails integration
+#### Rails Integration
 
 First install `jquery.li18n` with Bower and link it.
 
 ```bash
 bower install jquery.li18n
-ln -s bower_components/jquery.li18n/jquery.li18n.js app/assets/javascripts/
+cd app/assets/javascripts/ && ln -s ../../../bower_components/jquery.li18n/jquery.li18n.js
 ```
 
 In this example we'll use german locales, so create `config/locales/de.yml` or otherwise `I18n` would raise an error.
+
+```yaml
+de:
+  spam: 'eggs'
+```
+
 Then setup an example controller:
+
+```bash
+mkdir app/views/home && touch app/views/home/index.html.erb
+```
 
 ```ruby
 # config/routes.rb
@@ -171,5 +181,5 @@ $ ->
 
 Now start the server, navigate to [http://localhost:3000?locale=en](http://localhost:3000?locale=en)
 and you'll see the english version.
-If you navigate to [http://localhost:3000?locale=de](http://localhost:3000?locale=de), 
+If you navigate to [http://localhost:3000?locale=de](http://localhost:3000?locale=de),
 then you'll see the german version.
