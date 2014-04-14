@@ -1,185 +1,70 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>jquery.li18n by kostia</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/fifteen" rel="stylesheet" type="text/css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h2>jquery.li18n</h2>
-        <p>Lightweight i18n for jQuery.</p>
+  <title>Li18n</title>
 
-        <p class="view"><a href="https://github.com/kostia/jquery.li18n">View the Project on GitHub <small>kostia/jquery.li18n</small></a></p>
+  <link rel="stylesheet" href="http://openfontlibrary.org/face/fifteen">
+  <link rel="stylesheet" href="stylesheets/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/styles.css">
 
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <a href="https://github.com/kostia/jquery.li18n"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  <div class="container">
+    <h1>
+      <span class="logo1">L</span><span class="logo2">i</span><span class="logo3">1</span><span class="logo4">8</span><span class="logo5">n</span>
+    </h1>
+    <h2>Lightweight i18n for jQuery</h2>
 
-        <ul>
-          <li><a href="https://github.com/kostia/jquery.li18n/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/kostia/jquery.li18n/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/kostia/jquery.li18n">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-      <p>
-      <h1>
-        <span class="logo-L">L</span><span class="logo-i">i</span><span class="logo-1">1</span><span class="logo-8">8</span><span class="logo-n">n</span>
-      </h1>
-      </p>
+    <h3 class="why">Why?</h3>
+    <ul>
+      <li>It does exactly what it promises.</li>
+      <li>It is lightweight: less than 100 SLOC.</li>
+      <li>Full test coverage.</li>
+      <li>Well documented.</li>
+    </ul>
 
-<p>Lightweight i18n for jQuery.</p>
+    <h3 class="features">Features</h3>
+    <ul>
+      <li>Translation</li>
+      <li>Interpolation</li>
+      <li>Localization framework</li>
+      <li>Shortcuts</li>
+      <li>Fallbacks</li>
+      <li>Error handling</li>
+    </ul>
 
-<p>
-<a href="https://travis-ci.org/kostia/jquery.li18n"><img src="https://img.shields.io/travis/kostia/jquery.li18n.svg" /></a>
-<a href="http://bower.io/search/?q=li18n"><img src="https://img.shields.io/badge/bower-0.1.2-ffcc2f.svg" /></a>
-<a href="https://plugins.jquery.com/li18n"><img src="https://img.shields.io/badge/jquery--plugin-0.1.2-blue.svg" /></a>
-</p>
+    <h3 class="installation">Installation</h3>
+    <script src="https://gist.github.com/kostia/10689740.js"></script>
 
-<h2>
-<a name="why" class="anchor" href="#why"><span class="octicon octicon-link"></span></a>Why?</h2>
+    <h3 class="usage">Usage</h3>
+    <iframe width="100%" height="100" src="http://jsfiddle.net/pf59z/2/embedded/js,html,result"
+        allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-<ul>
-<li>It does exactly what it promises.</li>
-<li>It is lightweight: less than 100 SLOC.</li>
-<li>Full test coverage.</li>
-<li>Well documented.</li>
-</ul>
+    <div class="row source-api-howtos">
+      <div class="col-md-4 source">
+        <h3><a href="https://github.com/kostia/jquery.li18n">Source</a></h3>
+      </div>
 
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+      <div class="col-md-4 api">
+        <h3><a href="https://github.com/kostia/jquery.li18n/blob/master/API.md">API</a></h3>
+      </div>
 
-<ul>
-<li>Translation</li>
-<li>Interpolation</li>
-<li>Localization framework</li>
-<li>Shortcuts</li>
-<li>Fallbacks</li>
-<li>Error handling</li>
-</ul>
-
-<h2>
-<a name="installation-" class="anchor" href="#installation-"><span class="octicon octicon-link"></span></a>Installation
-</h2>
-
-<pre><code>bower install jquery.li18n
-</code></pre>
-
-<h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
-
-<iframe width="100%" height="100" src="http://jsfiddle.net/pf59z/2/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-<br /><br />
-
-<h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
-
-<ul>
-  <li><a href="https://github.com/kostia/jquery.li18n/blob/master/API.md">Detailed API</a></li>
-  <li>
-  <a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md">HOWTOs with live examples</a>
-
-  <ul>
-    <li><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#basic-usage">Basic Usage</a></li>
-    <li><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#shortcuts">Shortcuts</a></li>
-    <li><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#localization-with-momentjs">Localization with Moment.js</a></li>
-    <li><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#handlebars-helpers">Handlebars Helpers</a></li>
-    <li><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#fallbacks-language">Fallbacks Language</a></li>
-    <li><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#handling-missing-translations">Handling Missing Translations</a></li>
-    <li><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md#rails-integration">Rails integration</a></li>
-  </ul>
-  </li>
-</ul>
-
-<h2>
-<a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h2>
-
-<p>You will need Node.js in order to run tests.
-On OSX you can install Node.js with Homebrew (<a href="http://brew.sh/">http://brew.sh/</a>).</p>
-
-<h3>
-<a name="install-dependecies" class="anchor" href="#install-dependecies"><span class="octicon octicon-link"></span></a>Install dependecies</h3>
-
-<div class="highlight highlight-bash"><pre>npm install
-npm install -g bower
-bower install
-</pre></div>
-
-<h3>
-<a name="run-the-tests" class="anchor" href="#run-the-tests"><span class="octicon octicon-link"></span></a>Run the tests</h3>
-
-<div class="highlight highlight-bash"><pre>npm <span class="nb">test</span>
-</pre></div>
-
-<h2>
-<a name="other-i18n-libraries" class="anchor" href="#other-i18n-libraries"><span class="octicon octicon-link"></span></a>Other i18n libraries</h2>
-
-<p>The comments do not aim to be objective in any way, but reflect my own subjective opinions.</p>
-
-<h3>
-<a name="full-features-heavyweights" class="anchor" href="#full-features-heavyweights"><span class="octicon octicon-link"></span></a>Full-features heavyweights</h3>
-
-<ul>
-<li>
-<a href="https://github.com/jquery/globalize">https://github.com/jquery/globalize</a> Standard i18n lib by jQuery guys.</li>
-<li>
-<a href="https://github.com/airbnb/polyglot.js">https://github.com/airbnb/polyglot.js</a> Feature list similar to <code>globalize</code>, but not specific to jQuery.</li>
-</ul><h3>
-<a name="lightweights" class="anchor" href="#lightweights"><span class="octicon octicon-link"></span></a>Lightweights</h3>
-
-<ul>
-<li>
-<a href="https://github.com/jamuhl/i18next">https://github.com/jamuhl/i18next</a> Great i18n for jQuery, but does a little bit too much for my taste.</li>
-<li>
-<a href="https://github.com/recurser/jquery-i18n">https://github.com/recurser/jquery-i18n</a> Similar to <code>i18next</code>, but the API is <code>HTMLElement</code> scentric.</li>
-<li>
-<a href="https://github.com/wikimedia/jquery.i18n">https://github.com/wikimedia/jquery.i18n</a> Similar to <code>i18next</code>, unfortunately with some odd behaviour.</li>
-</ul>
-
-<h2><a name="user-content-contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
-<ul>
-  <li>In case of a feature request or a bug feel free to file an issue describing the requested feature or the buggy behavior: <a href="https://github.com/kostia/jquery.li18n/issues">https://github.com/kostia/jquery.li18n/issues</a>.</li>
-  <li>If you want to help out with coding, then make sure the test suite is green before issuing a pull request: <a href="https://github.com/kostia/jquery.li18n/pulls">https://github.com/kostia/jquery.li18n/pulls</a>.</li>
-</ul>
-
-<h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
-
-<p>The MIT License (MIT)</p>
-
-<p>Copyright (c) 2014 Kostiantyn Kahanskyi</p>
-
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-
-<p>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
-
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/kostia">kostia</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+      <div class="col-md-4 howtos">
+        <h3><a href="https://github.com/kostia/jquery.li18n/blob/master/HOWTO.md">HOWTOs</a></h3>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+  </div>
 
-  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="javascripts/bootstrap.js"></script>
+</body>
 </html>
