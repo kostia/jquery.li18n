@@ -3,6 +3,7 @@
   font-family: monospace, monospace;
   font-size: 16px;
   width: 550px;
+  margin-bottom: 50px;
 }
 
 h1, h2, h3 {
@@ -15,7 +16,7 @@ h1 {
   font-family: 'Fifteen';
   font-size: 160px;
   font-weight: bold;
-  margin: 10px 0 0 0;
+  margin: 130px 0 0 0;
   text-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -26,7 +27,7 @@ h1 .logo4 { color: #323212; }
 h1 .logo5 { color: #2a6883; }
 
 h2 {
-  font-size: 22px;
+  font-size: 24px;
   margin: 0;
 }
 
@@ -44,25 +45,33 @@ h3.installation,
 h3.usage {
   color: #e27272;
   font-family: 'Fifteen';
-  margin: 35px 0 0 0;
+  margin: 35px 0 0 90px;
   padding: 0;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 ul {
   list-style: none;
-  margin-left: 60px;
-  padding-left: 15px;
 }
 
-ul li:before {
-  content: '+';
-  margin: 0 1em;
+.feature {
+  padding: 0;
+  text-align: left;
+  margin-left: 75px;
 }
 
-pre {
-  background: #f9f9f9;
-  padding: 10px 0;
-  text-align: center;
+.plus {
+  font-family: 'Fifteen';
+  font-size: 50px;
+  font-weight: bold;
+  height: 0px;
+  margin: 0;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.feature-text {
+  margin-top: 20px;
 }
 
 .source-api-howtos {
@@ -82,4 +91,16 @@ pre {
 .api h3 a,
 .howtos h3 a {
   color: #e27272;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.selfie {
+  font-size: 20px;
+  height: 0px;
+  margin: 40px 0 20px 0;
+  text-align: center;
+}
+
+.selfie a {
+  color: #2a6883;
 }
