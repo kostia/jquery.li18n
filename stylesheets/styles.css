@@ -45,14 +45,9 @@ h3.installation,
 h3.usage {
   color: #e27272;
   font-family: 'Fifteen';
-  margin: 35px 0 0 90px;
+  margin: 35px 0 0 0;
   padding: 0;
-  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-ul {
-  list-style: none;
+  text-align: center;
 }
 
 .feature {
@@ -67,7 +62,6 @@ ul {
   font-weight: bold;
   height: 0px;
   margin: 0;
-  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 .feature-text {
@@ -91,7 +85,6 @@ ul {
 .api h3 a,
 .howtos h3 a {
   color: #e27272;
-  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 .selfie {
