@@ -1,4 +1,4 @@
-![Li18n](https://kostia-github.s3.amazonaws.com/jquery.li18n.svg)
+<img src="https://raw.githubusercontent.com/kostia/jquery.li18n/master/li18n.png" alt="Li18n" width="346px" height="171px" />
 
 Lightweight i18n for jQuery.
 
